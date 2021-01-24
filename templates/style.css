@@ -1,0 +1,195 @@
+/*Обнуление*/
+*{padding: 0;margin: 0;border: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height:100%;width:100%;line-height:1;font-size:20px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+ul li{list-style: none;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+/*--------------------*/
+
+body{
+    background-color: #212224;
+    color: #B6B6B6;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+::selection{background-color: #ff86f5;}
+
+/*==============Top Text==============*/
+.top-phrase{
+    padding: 3rem;
+    animation: top-phrase 1s ease-in-out;
+}
+@keyframes top-phrase {
+    0% {
+        transform: translateY(-150px);
+
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+.top-text{
+    font-size: 45px;
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+}
+.top-ref{
+    color: crimson;
+    transition: all .5s ease;
+}
+.top-ref:hover{
+    color: #00EBCB;
+}
+
+/*==============Memes Wrapper==============*/
+.memes-wrapper{
+    margin: 0 auto;
+    width: 55%;
+    animation: memes-wrapper 1.5s ease-in-out;
+}
+@keyframes memes-wrapper {
+    0% {
+        opacity: 0;
+
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/*==============Meme Item==============*/
+.meme-item{
+    display: flex;
+    border: 2px solid crimson;
+    padding: 1em 2em;
+    margin-bottom: 20px;
+    transition: all .3s ease;
+}
+.meme-item:hover{
+    border-color: #00EBCB;
+    box-shadow: 0 0 50px -10px black;
+    transform: scale(1.05);
+}
+.meme-item:nth-child(odd){animation: odd-meme-item 1s ease-in-out;}
+@keyframes odd-meme-item {
+    0% {
+        transform: translateX(-1550px) scale(.1);
+
+    }
+    100% {
+        transform: translateX(0px) scale(1);
+    }
+}
+.meme-item:nth-child(even){animation: even-meme-item 1s ease-in-out;}
+@keyframes even-meme-item {
+    0% {
+        transform: translateX(1550px) scale(.1);
+
+    }
+    100% {
+        transform: translateX(0px) scale(1);
+    }
+}
+img{
+    margin-right: 3em;
+    width: 250px;
+    height: 250px;
+}
+.meme-text{
+    font-size: 20px;
+    line-height: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*==============Footer==============*/
+footer{
+    background-color: #141517;
+    width: 100%;
+    height: 220px;
+    overflow: auto;
+    color: #7E8182;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.first-line-footer, .second-line-footer{
+    display: flex;
+    justify-content: center;
+}
+.footer-white-logo{
+    width: 260px;
+    margin-right: 255px;
+}
+.footer-menu, .social-media-menu{
+    display: flex;
+    align-items: center;
+}
+.social-media-menu a{
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1vw;
+    color: #7E8182;
+    transition: .5s;
+}
+.social-media-menu a:hover{color: crimson}
+.social-media-menu>li{
+    margin-right: 28px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+}
+.social-media-icon{
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+/*==============Button Wrapper==============*/
+.button-wrapper{
+    position: fixed;
+    top: 10em;
+    right: 3em;
+    width: 15%;
+    border-radius: 10px;
+    box-shadow: -10px -10px 15px #26272a, 10px 10px 15px #171719;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    color: #7E8182;
+    text-align: center;
+    animation: button-wrapper 1.5s ease-in-out;
+}
+@keyframes button-wrapper {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.small-instruction{
+    line-height: 30px;
+    margin-bottom: 3em;
+}
+button{
+    width: 100%;
+    border-radius: 40px;
+    padding: 5px 15px;
+    background-color: #212224;
+    color: crimson;
+    text-shadow: 0 0 10px crimson;
+    box-shadow: -2px -2px 6px rgba(255, 255, 255, .1), 2px 2px 6px rgba(0, 0, 0, .8);
+    font-size: 20px;
+}
+button:active{
+    box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .1), inset 2px 2px 6px rgba(0, 0, 0, .8);
+}
