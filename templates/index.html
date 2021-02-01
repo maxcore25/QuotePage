@@ -16,49 +16,12 @@
     </div>
     <!--Memes Content-->
     <div class="memes-wrapper">
-        <div class="meme-item">
-            <img src="https://miro.medium.com/max/300/0*qmnn9vY-E5i-5V7r.png" alt="Meme picture">
-            <p class="meme-text">
-                Other languages:<br>
-                *proper description of the error*<br>
-                Python:<br>
-                is that like invalid syntax or something<br>
-            </p>
-        </div>
-        <div class="meme-item">
-            <img src="https://miro.medium.com/max/300/0*Uo7smotszQoHsXho.png" alt="Meme picture">
-            <p class="meme-text">
-                When you have to write code on piece of paper for programming tests<br>
-                Modern problems require ancient solutions
-            </p>
-        </div>
-        <div class="meme-item">
-            <img src="https://miro.medium.com/max/300/0*T9Cp1i9aEB9kvUYL.png" alt="Meme picture">
-            <p class="meme-text">
-                Programmers<br>
-                After fixing all errors
-            </p>
-        </div>
-        <div class="meme-item">
-            <img src="https://miro.medium.com/max/289/0*dMs4k61w26XwZF5A.png" alt="Meme picture">
-            <p class="meme-text">
-                I'm a programmer<br>
-                And I'm not gonna fix your PC
-            </p>
-        </div>
-        <div class="meme-item">
-            <img src="https://miro.medium.com/max/252/0*SqUlWQwL5UtZstM5.png" alt="Meme picture">
-            <p class="meme-text">
-                IP Man<br>
-                Mask
-            </p>
-        </div>
-        <div class="meme-item">
-            <img src="https://miro.medium.com/max/640/0*09J7DozpiBdYccOR.png" alt="Meme picture">
-            <p class="meme-text">
-                I AM ROOT<br>
-            </p>
-        </div>
+        {% for item in posts %}
+            <div class="meme-item">
+                <img src="{{item[0]}}" alt="Meme picture">
+                <p class="meme-text">{{item[1]}}</p>
+            </div>
+        {% endfor %}
     </div>
     <!--Footer-->
     <footer>

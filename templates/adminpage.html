@@ -20,22 +20,35 @@
         <div class="form-wrapper">
             <div class="form">
                 <h2>Post Form</h2>
-                <div class="input">
-                    <!--Image URL Input-->
-                    <div class="input-box">
-                        <label for="url">Image URL</label>
-                        <input type="text" id="url">
+                <form action="" method="post" novalidate>
+                    <div class="input">
+                        {{ form.hidden_tag() }}
+                        <!--Image URL Input-->
+                        <div class="input-box">
+                            {{ form.picture.label }}
+                            {{ form.picture }}
+                            {% for error in form.picture.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!--Description Input-->
+                        <div class="input-box">
+                            {{ form.description.label }}
+                            {{ form.description }}
+                            {% for error in form.description.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!--Post Button-->
+                        <div class="input-box">
+                            {{ form.submit() }}
+                        </div>
                     </div>
-                    <!--Description Input-->
-                    <div class="input-box">
-                        <label for="description">Meme Description</label>
-                        <input type="text" id="description">
-                    </div>
-                    <!--Post Button-->
-                    <div class="input-box">
-                        <input type="submit" value="Post">
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
