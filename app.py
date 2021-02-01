@@ -9,7 +9,8 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = 'sdjkfnsdjkfnsdfjsdkfnjdfsdnfj' # исправить потом!!!!
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:pass@localhost/quote_page_db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:pass@localhost/quote_page_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:/Projects/QuotePage/QuotePage/memes.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
