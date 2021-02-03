@@ -53,6 +53,7 @@ body{
     margin: 0 auto;
     width: 55%;
     animation: memes-wrapper 1.5s ease-in-out;
+    min-height: 80vh;
 }
 @keyframes memes-wrapper {
     0% {
