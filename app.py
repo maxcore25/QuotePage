@@ -6,7 +6,6 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from dotenv import load_dotenv
 import os
-import random
 
 # Loading of configurations file
 dotenv_path = os.path.join(os.path.dirname(__file__), 'app_config.env')
