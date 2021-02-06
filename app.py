@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 
 # Loading of configurations file
-dotenv_path = os.path.join(os.path.dirname(__file__), 'config.env')
+dotenv_path = os.path.join(os.path.dirname(__file__), 'app_config.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
