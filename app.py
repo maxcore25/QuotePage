@@ -18,8 +18,8 @@ app = Flask(__name__)
 # app.debug = True
 app.config['CSRF_ENABLED'] = os.getenv('CSRF_ENABLED')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:/Projects/QuotePage/QuotePage/memes.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:/Projects/QuotePage/QuotePage/memes.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
 
 db = SQLAlchemy(app)
@@ -38,8 +38,8 @@ class Post(db.Model):
 
 
 class PostForm(FlaskForm):
-    picture = StringField('Picture url', validators=[DataRequired(message='davay po novoy')])
-    description = StringField('Description', validators=[DataRequired(message='davay po novoy')])
+    picture = StringField('Picture url', validators=[DataRequired(message='This input required')])
+    description = StringField('Description', validators=[DataRequired(message='This input required')])
     submit = SubmitField('Post')
 
 
@@ -53,6 +53,7 @@ db.create_all()
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+    print(session)
     if 'pic_counter' not in session:
         return redirect('/set_s')
     form = MoreButton()
