@@ -42,7 +42,10 @@
     <!--Button Wrapper-->
     <div class="button-wrapper">
         <p class="small-instruction">Click this button to see more memes</p>
-        <button>More memes</button>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            {{ form.submit() }}
+        </form>
     </div>
 </body>
 </html>

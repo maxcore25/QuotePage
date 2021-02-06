@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, session, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_wtf import FlaskForm
@@ -6,6 +6,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from dotenv import load_dotenv
 import os
+import random
 
 # Loading of configurations file
 dotenv_path = os.path.join(os.path.dirname(__file__), 'app_config.env')
@@ -37,9 +38,13 @@ class Post(db.Model):
 
 
 class PostForm(FlaskForm):
-    picture = StringField('Ссылка на картинку', validators=[DataRequired(message='Это обязательное поле')])
-    description = StringField('Описание', validators=[DataRequired(message='Это обязательное поле')])
-    submit = SubmitField('Опубликовать')
+    picture = StringField('Picture url', validators=[DataRequired(message='davay po novoy')])
+    description = StringField('Description', validators=[DataRequired(message='davay po novoy')])
+    submit = SubmitField('Post')
+
+
+class MoreButton(FlaskForm):
+    submit = SubmitField('More memes')
 
 
 db.create_all()
@@ -48,9 +53,19 @@ db.create_all()
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+    if 'pic_counter' not in session:
+        return redirect('/set_s')
+    form = MoreButton()
     raw_posts = db.session.query(Post).all()
-    posts = [(el.im_link, el.description) for el in raw_posts]
-    return render_template('index.html', title='Главная', posts=posts)
+    posts = [(el.im_link, el.description, el.id) for el in raw_posts]
+    res_posts = list(reversed(posts[:session['pic_counter']]))
+    if form.validate_on_submit():
+        raw_posts = db.session.query(Post).all()
+        posts = [(el.im_link, el.description, el.id) for el in raw_posts]
+        if session['pic_counter'] <= len(posts):
+            session['pic_counter'] += 1
+        res_posts = list(reversed(posts[:session['pic_counter']]))
+    return render_template('index.html', title='Главная', posts=res_posts, form=form)
 
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -63,6 +78,12 @@ def admin():
         db.session.commit()
         return redirect('/admin')
     return render_template('adminpage.html', title='Добавление поста', form=form)
+
+
+@app.route('/set_s', methods=['GET'])
+def set_s():
+    session['pic_counter'] = 2
+    return redirect("/")
 
 
 if __name__ == '__main__':
