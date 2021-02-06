@@ -1,17 +1,25 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+from dotenv import load_dotenv
+import os
+
+# Loading of configurations file
+dotenv_path = os.path.join(os.path.dirname(__file__), 'app_config.env')
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
 
 
 app = Flask(__name__)
-app.debug = True
-app.config['SECRET_KEY'] = 'sdjkfnsdjkfnsdfjsdkfnjdfsdnfj' # исправить потом!!!!
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:pass@localhost/quote_page_db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:/Projects/QuotePage/QuotePage/memes.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.debug = True
+app.config['CSRF_ENABLED'] = os.getenv('CSRF_ENABLED')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:/Projects/QuotePage/QuotePage/memes.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
 
 db = SQLAlchemy(app)
 
@@ -53,6 +61,7 @@ def admin():
         post = Post(im_link=picture, description=description)
         db.session.add(post)
         db.session.commit()
+        return redirect('/admin')
     return render_template('adminpage.html', title='Добавление поста', form=form)
 
 
